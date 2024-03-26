@@ -19,3 +19,6 @@
 
 # Go workspace file
 go.work
+
+# Modified config files with API keys should not be pushed to repository
+*.env
