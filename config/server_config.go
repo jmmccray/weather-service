@@ -7,8 +7,6 @@ import (
 )
 
 func LoadServerConfig() error {
-	fmt.Println("Starting to load config...")
-
 	// Check if config.env path exists in the root directory.
 	if _, err := os.Stat("config.env"); os.IsNotExist(err) {
 		fmt.Printf("File '%s' does not exist\n", "env.config")
@@ -31,7 +29,7 @@ func LoadServerConfig() error {
 		return err
 	}
 
-	fmt.Println("...Finished successfully loading config")
+	//fmt.Println("...Finished successfully loading config")
 	return nil
 }
 
