@@ -114,7 +114,7 @@ func (c *OpenWeatherClient) NewClient() {
 }
 
 // Make an HTTP GET request from OpenWeather client
-func (c *OpenWeatherClient) GetWeatherRequest(lat, lon string) error {
+func (c *OpenWeatherClient) ClientWeatherRequest(lat, lon string) error {
 	// Check if client is initialize
 	if c == nil {
 		fmt.Println("Client has not be initialized")
@@ -146,6 +146,7 @@ func (c *OpenWeatherClient) GetWeatherRequest(lat, lon string) error {
 		time.Sleep(2 * time.Second)
 	}
 	defer resp.Body.Close()
+
 	return nil
 }
 
@@ -161,6 +162,8 @@ func (s *OpenWeatherServer) RunServer() {
 		return
 	}
 
+	//http.HandleFunc("/client",getWeatherDataHandler)
+
 	s.server = &http.Server{
 		Addr:         "localhost:8080", // added localhost to by-pass Windows Defender firewall
 		Handler:      http.HandlerFunc(getWeatherDataHandler),
@@ -175,12 +178,12 @@ func (s *OpenWeatherServer) RunServer() {
 	}
 }
 
-// Converts geolocation coordinates into the coordinate defined string format.
+// Converts float geolocation coordinates into a string format.
 func convertGeoCoors(coor float64) string {
 	return fmt.Sprintf("%.6f", coor)
 }
 
-// Spins up the Weather Server on localhost:8080
+// Spins up a standalone the Weather Server instance on localhost:8080
 func RunOpenWeatherServer() {
 	// Load necessary environment variables to get OpenWeather data
 	err := config.LoadServerConfig()
@@ -214,12 +217,12 @@ func getWeatherDataHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println("Request: ", string(body))
-
 	// Unmarshal data into OpenWeatherData object
 	err = json.Unmarshal(body, &coordinates)
 	if err != nil {
 		fmt.Printf("Error unmarshaling data into Coordinates object: %s\n", err.Error())
+		coordinates.Latitude = "0"
+		coordinates.Longitude = "0"
 	}
 
 	url := fmt.Sprintf("https://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&appid=%s",
@@ -257,7 +260,6 @@ func getWeatherDataHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Printf("Error unmarshaling data into OpenWeatherData object: %s\n", err.Error())
 	}
-
 	// TODO: write struct to SQL DB
 }
 
@@ -350,21 +352,20 @@ func getCLIPrompt() {
 			fmt.Printf("Lat: %s | Lon: %s\n", convertGeoCoors(lat), convertGeoCoors(lon))
 
 			// Make HTTP request
-			err = client.GetWeatherRequest(convertGeoCoors(lat), convertGeoCoors(lon))
+			err = client.ClientWeatherRequest(convertGeoCoors(lat), convertGeoCoors(lon))
 			if err != nil {
 				fmt.Println("Error: ", err.Error())
-			}
-			os.Exit(0)
+			}		
+		// TODO: implement select
 		} else if userInput == "sel" {
 			fmt.Println("Select from list")
 		} else {
 			fmt.Printf("Invalid input: %s\n", userInput)
 		}
 	}
-
-	// (defined) Select from the list
 }
 
+// TODO: Define webapp prompt
 func getWebAppPrompt() {
 
 }
@@ -373,8 +374,8 @@ func StartOpenWeatherApp() {
 	scanner := bufio.NewScanner(os.Stdin)
 	server := &OpenWeatherServer{}
 	go server.RunServer()
-
 	time.Sleep(3 * time.Second)
+	
 	// Allows the user to input an incorrect response 5x.
 	for i := 1; i <= 5; {
 		// Check if the user wants to use the cli or web app interfaces.

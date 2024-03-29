@@ -7,5 +7,5 @@ import(
 
 func main() {
 	fmt.Println("Starting Weather Service server...")
-	server.RunWeatherServer()
+	server.StartOpenWeatherApp()
 }
