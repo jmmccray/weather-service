@@ -1,11 +1,12 @@
 package main
 
-import(
-	"github.com/jmmccray/weather-service/server"
+import (
 	"fmt"
+
+	"github.com/jmmccray/weather-service/server"
 )
 
 func main() {
-	fmt.Println("Starting Weather Service server...")
+	fmt.Println("Starting OpenWeather service server...")
 	server.StartOpenWeatherApp()
 }
