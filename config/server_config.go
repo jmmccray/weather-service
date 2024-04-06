@@ -28,8 +28,6 @@ func LoadServerConfig() error {
 		fmt.Println("The config variable, OW_API_KEY does not exist")
 		return err
 	}
-
-	//fmt.Println("...Finished successfully loading config")
 	return nil
 }
 
