@@ -1,27 +1,54 @@
-# Weather Service
+# Open Weather Service
 
 ## Description
-Write an http server that uses the Open Weather API that exposes an endpoint that takes in lat/long coordinates. This endpoint should return what the weather condition is outside in that area (snow, rain, etc), whether it’s hot, cold, or moderate outside (use your own discretion on what temperature equates to each type).
+A HTTP server and client that uses the Open Weather API to get the weather conditions from a given set of coordinates. It summarizes the weather conditions outside of the location (snow, rain, etc) and whether it’s hot, cold, or fair outside.
 
-The API can be found here: https://openweathermap.org/api. Even though most of the API calls found on OpenWeather aren’t free, you should be able to use the free “current weather data” API call for this project.  First, sign-up for an account, which shouldn’t require credit card or payment information.  Once you’ve created an account, use https://openweathermap.org/faq to get your API Key setup to start using the API.
+The API can be found here: https://openweathermap.org/api.
 
-## How to Run
-Running main.go: TBU
+## Features Used
+Features: interfaces, goroutines, points, structs, servers, clients, HTTP requests/responses, Github Actions, and API calls.
 
-    - Decision tree: simple or manual
-    - Manual: Takes user input of location 
-    - Selection: Produces drop down menu of predefined locations.
-Using the web application: TBU
+Go Packages: io, buido, os, strings, time, strconv, http/net, encoding/json, errors, and bytes.
 
-    - Run a web application
+
+## Running the Application
+NOTE: There is only one way to run the application at present. The web application and cli are still in development.
+
+### Prequisites
+* Go version 1.xx or above is installed.
+* Using a Windows machine. Linux or Mac OS machine hasn't been tested but should work with appropriate environment variables set.
+
+### Setting Up Environment Variables
+To make successful calls to the Open Weather API, you'll need an Open Weather API Key. To create a key follow these instructions. Then, in config.env file
+```
+OW_API_KEY=" 
+```
+
+### Running main.go:
+1. Navigate to the root directory of this repository in your terminal and run main.go
+```
+go run main.go
+```
+2. Next, you should see text that asks if you would like to use the cli or web app. 
+
+    NOTE: The web app is still in development and is not usable.
+
+    ![Alt text](docs/images/cli_app_prompt.png)
+
+3. Then, you will see another prompt that asks if you want to manually (man) enter coordinates or select (sel) from a predefined list of places.
+    
+    ![Alt text](docs/images/man_sel_prompt.png)
+
+#### Running the web application:
+    - Still in development.
+
+#### Running the CLI
+    - Still in development.
 
 ## CI/CD
-Implementing GitHub Actions: TBU
+Uses GitHub Actions to support CI/CD. A rudemintary implementation is setup but will be updated in future releases.
 
-# Improvements: TBU
-- More robust user web application interface
-- 
-
-
-# Example API calls
-Endpoint: http://api.openweathermap.org/
+## Improvements
+- Implement a PostgreSQL as a persistent database to store weather responses.
+- Implement as a command line tool using Cobra.
+- Implement a local web application interface using JavaScript, React, HTML5.
