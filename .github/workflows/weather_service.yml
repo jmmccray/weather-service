@@ -1,20 +1,20 @@
-name : Weather Service Test
+name : Weather Service Test # Specifies the name of the workflow
 
-on: [push, pull_request]
+on: [push, pull_request] # Defines the events that trigger the workflow. On very push and pull it's triggered
 
-jobs:
-  test:
+jobs: # Contains one or more jobs that run sequentially or in parallel
+  test: # Defines a job named "Test" beelow
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Specifies the type of virtual environment to run the job on.
 
-    steps:
+    steps: # Contains a series of steps that make up the job.
     - name: Checkout code
       uses: actions/checkout@v2
     
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.22
+        go-version: 1.22 # Specifies the go version to use.
 
     - name: Run tests
       run: go test -v ./...
