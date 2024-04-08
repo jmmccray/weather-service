@@ -15,6 +15,8 @@ import (
 )
 
 func StartOpenWeather() {
+	fmt.Println("Starting OpenWeather service server...")
+	
 	scanner := bufio.NewScanner(os.Stdin)
 	server := &server.OpenWeatherServer{}
 	go server.RunServer()
