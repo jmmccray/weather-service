@@ -8,7 +8,7 @@ The API can be found here: https://openweathermap.org/api.
 ## Features Used
 Features: interfaces, goroutines, points, structs, servers, clients, HTTP requests/responses, Github Actions, and API calls.
 
-Go Packages: io, buido, os, strings, time, strconv, http/net, encoding/json, errors, and bytes.
+Go Packages: io, bufio, os, strings, time, strconv, http/net, encoding/json, errors, and bytes.
 
 
 ## Running the Application
@@ -19,9 +19,9 @@ NOTE: There is only one way to run the application at present. The web applicati
 * Using a Windows machine. Linux or Mac OS machine hasn't been tested but should work with appropriate environment variables set.
 
 ### Setting Up Environment Variables
-To make successful calls to the Open Weather API, you'll need an Open Weather API Key. To create a key follow these instructions. Then, in config.env file
+To make successful calls to the Open Weather API, you'll need an Open Weather API Key. To create a key follow these [instructions](https://openweathermap.org/api/one-call-3#start). Then, in the config.env file replace "your_open_weather_api_key" with your key.
 ```
-OW_API_KEY=" 
+OW_API_KEY="your_open_api_key"
 ```
 
 ### Running main.go:
