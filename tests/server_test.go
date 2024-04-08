@@ -1,13 +1,11 @@
 package tests
 
-import (
-	"net/http"
-	"net/http/httptest"
-	s "github.com/jmmccray/weather-service/server"
-	"testing"
-)
-
-// TODO
+// import (
+// 	"net/http"
+// 	"net/http/httptest"
+// 	s "github.com/jmmccray/weather-service/server"
+// 	"testing"
+// )
 
 // func TestClientWeatherRequest(t *testing.T) {
 //     // Mock server
