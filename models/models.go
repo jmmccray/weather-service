@@ -16,13 +16,12 @@ type Coordinates struct {
 }
 
 type Geolocation struct {
-	City      string // name of city
+	City      string
 	State     string
-	Latitude  float64 // 6 decimal places
-	Longitude float64 // 6 decimal places
+	Latitude  float64
+	Longitude float64
 }
 
-// Defines the struct where the response from OpenWeather endpoint is stored.
 type OpenWeatherData struct {
 	Coord      OW_Coordinates `json:"coord,omitempty"`
 	Weather    []WeatherData  `json:"weather,omitempty"`
@@ -81,7 +80,7 @@ type SysData struct {
 	Type    int    `json:"type,omitempty"`
 	Id      int    `json:"id,omitempty"`
 	Country string `json:"country,omitempty"`
-	Sunrise int    `json:"sunrise,omitempty"` // convert to UNIX UTC to date format
+	Sunrise int    `json:"sunrise,omitempty"`
 	Sunset  int    `json:"sunset,omitempty"`
 }
 

@@ -43,7 +43,6 @@ func (s *OpenWeatherServer) RunServer() {
 	}	
 }
 
-// Spins up a standalone the Weather Server instance on localhost:8080
 func RunOpenWeatherServer(domain, port string) {
 	// Load necessary environment variables to get OpenWeather data
 	err := config.LoadServerConfig()
@@ -84,7 +83,6 @@ func getWeatherDataHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Unmarshal data into OpenWeatherData object
 	err = json.Unmarshal(body, &coordinates)
 	if err != nil {
 		fmt.Printf("Error unmarshaling data into Coordinates struct: %s\n", err.Error())
@@ -122,7 +120,6 @@ func getWeatherDataHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(utils.PrettyFormatWeatherData(body)))
 	fmt.Println("Weather Data: \n", utils.PrettyFormatWeatherData(body))
 
-	// Unmarshal data into OpenWeatherData object
 	err = json.Unmarshal(body, &weatherData)
 
 	if err != nil {

@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"github.com/jmmccray/weather-service/models"
 )
-// Converts float geolocation coordinates into a string format.
+
 func ConvertGeoCoors(coor float64) string {
 	return fmt.Sprintf("%.6f", coor)
 }
@@ -23,7 +23,6 @@ func ValidateCheckLatLonValue(lat, lon float64) error {
 	return nil
 }
 
-// Pretty-Prints the JSON response data in a read-able format to the console.
 func PrettyFormatWeatherData(data []byte) string {
 	var prettyJSON bytes.Buffer
 	err := json.Indent(&prettyJSON, data, "", " ")
@@ -33,7 +32,6 @@ func PrettyFormatWeatherData(data []byte) string {
 	return prettyJSON.String()
 }
 
-// TODO: Prints the values from the OpenWeatherData struct
 func PrintOpenWeatherData(data models.OpenWeatherData) {
 
 }
