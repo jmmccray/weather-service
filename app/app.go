@@ -11,6 +11,7 @@ import (
 	"github.com/jmmccray/weather-service/server"
 	"github.com/jmmccray/weather-service/client"
 	"github.com/jmmccray/weather-service/models"
+	"github.com/jmmccray/weather-service/utils"
 )
 
 func StartOpenWeather() {
@@ -85,15 +86,15 @@ func getCLIPrompt() {
 			}
 
 			// Check if lat and lon are valid coordinates
-			if ok := models.ValidateCheckLatLonValue(lat, lon); ok != nil {
+			if ok := utils.ValidateCheckLatLonValue(lat, lon); ok != nil {
 				fmt.Printf("Invalid coordinates: %s\n", err.Error())
 				continue
 			}
 
-			fmt.Printf("Lat: %s | Lon: %s\n", models.ConvertGeoCoors(lat), models.ConvertGeoCoors(lon))
+			fmt.Printf("Lat: %s | Lon: %s\n", utils.ConvertGeoCoors(lat), utils.ConvertGeoCoors(lon))
 
 			// Make HTTP request
-			err = client.ClientWeatherRequest(models.ConvertGeoCoors(lat), models.ConvertGeoCoors(lon))
+			err = client.ClientWeatherRequest(utils.ConvertGeoCoors(lat), utils.ConvertGeoCoors(lon))
 			if err != nil {
 				fmt.Println("Error: ", err.Error())
 			}
@@ -122,7 +123,7 @@ func getCLIPrompt() {
 			if index < 0 && index > len(models.Geolocations)-1 {
 				fmt.Printf("The number entered does exist in range [0-%d]\n",len(models.Geolocations)-1)
 			}
-			client.ClientWeatherRequest(models.ConvertGeoCoors(models.Geolocations[index].Latitude), models.ConvertGeoCoors(models.Geolocations[index].Longitude))
+			client.ClientWeatherRequest(utils.ConvertGeoCoors(models.Geolocations[index].Latitude), utils.ConvertGeoCoors(models.Geolocations[index].Longitude))
 		} else {
 			fmt.Printf("Invalid input: %s\n", userInput)
 		}

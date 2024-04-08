@@ -9,6 +9,7 @@ import (
 
 	"github.com/jmmccray/weather-service/config"
 	"github.com/jmmccray/weather-service/models"
+	"github.com/jmmccray/weather-service/utils"
 )
 
 type OpenWeatherServer struct {
@@ -118,8 +119,8 @@ func getWeatherDataHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Write([]byte(models.PrettyFormatWeatherData(body)))
-	fmt.Println("Weather Data: \n", models.PrettyFormatWeatherData(body))
+	w.Write([]byte(utils.PrettyFormatWeatherData(body)))
+	fmt.Println("Weather Data: \n", utils.PrettyFormatWeatherData(body))
 
 	// Unmarshal data into OpenWeatherData object
 	err = json.Unmarshal(body, &weatherData)
