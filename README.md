@@ -33,17 +33,17 @@ go run main.go
 
     NOTE: The web app is still in development and is not usable.
 
-    ![](docs/images/cli_app_prompt.png)
+    ![cli_app_prompt](./docs/images/cli_app_prompt.png)
 
 3. Then, you will see another prompt that asks if you want to manually (man) enter coordinates or select (sel) from a predefined list of places.
     
-    ![](docs/images/man_sel_prompt.png)
+    ![](./docs/images/man_sel_prompt.png)
 
 #### Running the web application:
-    - *Still in development*.
+    - Still in development.
 
 #### Running the CLI
-    - *Still in development*.
+    - Still in development.
 
 ## CI/CD
 Uses GitHub Actions to support CI/CD. A rudemintary implementation is setup but will be updated in future releases.
